@@ -1,0 +1,76 @@
+[
+    {
+      "id": 1,
+      "country": "Jamaica / Kingston",
+      "price": "$90"  
+    },
+    {
+        "id": 2,
+        "country": "Jamaica / Montego Bay",
+        "price": "$98"  
+    },
+    {
+        "id": 3,
+        "country": "Antigua",
+        "price": "$130"  
+    },
+    {
+      "id": 4,
+      "country": "Anguilla",
+      "price": "$140"  
+    },
+    {
+        "id": 5,
+        "country": "Barbados",
+        "price": "$130"  
+    },
+    {
+        "id": 6,
+        "country": "Belize",
+        "price": "$145"  
+    },
+    {
+        "id": 7,
+        "country": "Dominica",
+        "price": "$140"  
+    },
+    {
+        "id": 8,
+        "country": "Grenada",
+        "price": "$140"  
+    },
+    {
+        "id": 9,
+        "country": "Guyana",
+        "price": "$140"  
+    },
+    {
+        "id": 10,
+        "country": "St. Lucia",
+        "price": "$130"  
+    },
+    {
+        "id": 11,
+        "country": "St. Vincent",
+        "price": "$130"  
+    },
+    {
+        "id": 11,
+        "country": "St. Croix",
+        "price": "$130"  
+    },
+    {
+        "id": 11,
+        "country": "Trinidad / Port of Spain",
+        "price": "$115"  
+    },
+    {
+        "id": 12,
+        "country": "Trinidad / Point Lisas",
+        "price": "$120"  
+    }
+
+  
+  
+
+]
