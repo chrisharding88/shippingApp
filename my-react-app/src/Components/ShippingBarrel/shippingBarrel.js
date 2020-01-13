@@ -5,7 +5,7 @@ export const numberInput = () => {
     return (
         <div className="numberInput">
             <label>How Many Barrels Are You Sending:</label>
-            <input type="number" className="barrelInput" size="5" required/>
+            <input type="number" className="barrelQuantity" size="5" required/>
         </div>
     )
 }
@@ -45,5 +45,14 @@ export const dropdownCountries = (props) => {
 export const price1 =(props) =>{
     return(
         <span className="displayShippingBarrelPrice" >{props.children}</span>
+    )
+}
+
+
+export const submit =() => {
+    return(
+        <div className="submit">
+            <button type="button" className="btn btn-primary">Submit</button>
+        </div>
     )
 }
