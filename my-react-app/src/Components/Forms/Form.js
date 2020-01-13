@@ -50,30 +50,30 @@ class Form extends Component {
                 <Row className="form-row">
                      <Col className="col">
                         <label for="firstName">First Name</label>
-                        <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.handleFormChange} placeholder="First Name">
+                        <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.handleFormChange} placeholder="First Name"/>
                     </Col>
                     <Col className="col">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" value={this.state.lastName} onChange={this.handleFormChange} placeholder="Last Name">
+                            <input type="text" class="form-control" id="lastName" value={this.state.lastName} onChange={this.handleFormChange} placeholder="Last Name"/>
                     </Col>
                </Row>
                 <Row className="form-row">
                       <label for="address">Address</label>
-                      <input type="text" class="form-control" id="address" value={this.state.address} onChange={this.handleFormChange} placeholder="Address">
+                      <input type="text" class="form-control" id="address" value={this.state.address} onChange={this.handleFormChange} placeholder="Address"/>
                 </Row>
 
                 <Row class="form-row">
                      <Col className="col">
                          <label for="City">City</label>
-                         <input type="text" class="form-control" id="city" value={this.state.city} onChange={this.handleFormChange} placeholder="City">
+                         <input type="text" class="form-control" id="city" value={this.state.city} onChange={this.handleFormChange} placeholder="City"/>
                     </Col>
                      <Col className="col">
                         <label for="State">State</label>
-                        <input type="text" class="form-control" id="state" value={this.state.state} onChange={this.handleFormChange} placeholder="State">
+                        <input type="text" class="form-control" id="state" value={this.state.state} onChange={this.handleFormChange} placeholder="State"/>
                     </Col>
                      <Col className="col">
                         <label for="Zip">Zip</label>
-                        <input type="number" class="form-control" id="zip" value={this.state.zip} onChange={this.handleFormChange} placeholder="Zip">
+                        <input type="number" class="form-control" id="zip" value={this.state.zip} onChange={this.handleFormChange} placeholder="Zip"/>
                      </Col>
                 </Row>
 

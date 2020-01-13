@@ -15,7 +15,11 @@ var jobSchema = new Schema ({
     state: {type:String, required: true},
     zip: {type:Number, required: true},
     barrelQuantity: {type:Number, required: true},
-    country: {type:String, required: true}
+    barrelType: {type: Array, required: true},
+    country: {type:Array, required: true},
+    shippingPrice: {type:Array, required: true},
+    barrelPrice:{type: Array, required: true}
+
 })
 
 var JobList = mongoose.model("Jobs", jobSchema);

@@ -17,9 +17,11 @@ state = {
    city:"",
    state:"",
    zip:"",
-   quantityBarrel: "",
-   country: "",
-   price: ""
+   barrelQuantity: "",
+   barrelType: [],
+   country: [],
+   barrelPrice: [],
+   shippingPrice: []
 
 }
 
@@ -31,6 +33,23 @@ getJobInfo = () => {
     DB.getJobInfo()
 }
 
+
+
+
+render(){
+    return(
+
+
+
+
+    )
+
+
+
+
+
+
+}
 
 
 

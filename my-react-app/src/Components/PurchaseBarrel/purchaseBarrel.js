@@ -1,4 +1,7 @@
 import React from 'react';
+import BarrelPrices from '../../API'
+import BarrelType from '../../API'
+
 
 
 export const numberInput2 = () => {
@@ -15,10 +18,10 @@ export const dropdownBarrels = (props) => {
         <div className="dropdownBarrelMenu">
             <label for="dropdown-menu"> Pick A Barrel:</label>
             <div className="dropdown-menu">
-                <a className="barrels" id="1">SJB Cardboard</a>
-                <a className="barrels" id="2">SJB Plastic</a>
-                <a className="barrels" id="3">Medium Cardboard</a>
-                <a className="barrels" id="4">Medium Plastic</a>
+                <a className="barrels" id="0">SJB Cardboard</a>
+                <a className="barrels" id="1">SJB Plastic</a>
+                <a className="barrels" id="2">Medium Cardboard</a>
+                <a className="barrels" id="3">Medium Plastic</a>
             </div>
         </div>
     )
