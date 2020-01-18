@@ -1,4 +1,5 @@
 import React from 'react';
+import API from '../../API'
 
 
 export const numberInput = () => {
@@ -17,21 +18,7 @@ export const dropdownCountries = (props) => {
         <div className="dropdownCountriesMenu">
             <label for="dropdown-menu"> Country:</label>
             <div className="dropdown-menu">
-                <a className="country" id="0">Anguilla</a>
-                <a className="country" id="1">Antigua</a>
-                <a className="country" id="2">Barbados</a>
-                <a className="country" id="3">Belize</a>
-                <a className="country" id="4">Dominica</a>
-                <a className="country" id="5">Grenada</a>
-                <a className="country" id="6">Guyana</a>
-                <a className="country" id="7">Jamaica / Kingston</a>
-                <a className="country" id="8">Jamaica / Montego Bay</a>
-                <a className="country" id="9">St.Croix</a>
-                <a className="country" id="10">St.Lucia</a>
-                <a className="country" id="11">St.Vincent</a>
-                <a className="country" id="12">Tobago</a>
-                <a className="country" id="13">Trinidad / Port of Spain</a>
-                <a className="country" id="14">Trinidad / Port of Lisas</a>
+                <a className="country" id={props.id}>{props.country}</a>
             </div>
         </div>
 
@@ -42,14 +29,14 @@ export const dropdownCountries = (props) => {
 }
 
 
-export const price1 =(props) =>{
+export const shipPrice =(props) =>{
     return(
-        <span className="displayShippingBarrelPrice" >{props.children}</span>
+        <span className="displayShippingBarrelPrice" >{props.shippingPrice}</span>
     )
 }
 
 
-export const submit =() => {
+export const Submit =() => {
     return(
         <div className="submit">
             <button type="button" className="btn btn-primary">Submit</button>

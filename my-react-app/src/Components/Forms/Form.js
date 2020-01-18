@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Col} from "../Col"
-import {Row} from '../Row';
+import Col from "../Col"
+import Row from '../Row';
 
 
 class Form extends Component {
@@ -13,21 +13,23 @@ class Form extends Component {
             address: "",
             city: "",
             state: "",
-            zip: ""
+            zip: "",
+            telephoneNumber: ""
         }
 
 
     }
 
     handleFormChange = (event) => {
-        const { fName, lName, address, city, state, zip } = event.target
+        const { fName, lName, address, city, state, zip, telNumber } = event.target
         this.setState({
             firstName: fName.value,
             lastName: lName.value,
             address: address.value,
             city: city.value,
             state: state.value,
-            zip: zip.value
+            zip: zip.value,
+            telephoneNumber:telNumber.value
         })
     }
 
@@ -39,7 +41,9 @@ class Form extends Component {
             address:"",
             city: "",
             state:"",
-            zip: ""
+            zip: "",
+            telephoneNumber: ""
+
         })
     }
 
@@ -77,9 +81,15 @@ class Form extends Component {
                      </Col>
                 </Row>
 
+                <Row>
+                        <label for="telNumber">Telephone Number</label>
+                        <input type="number" class="form-control" id="telNumber" value={this.state.telephoneNumber} onChange={this.handleFormChange} placeholder="Telephone Number"/>
+                </Row>
+
                  <button type="submit" class="btn btn-primary" onChange={this.handleFormSubmit}>Submit</button>
            </form>
 
+            
         )
                                             
     }             

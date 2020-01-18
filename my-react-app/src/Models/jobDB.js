@@ -1,4 +1,3 @@
-import React from 'react';
 
 var mongoose = require("mongoose"); 
 
@@ -14,6 +13,7 @@ var jobSchema = new Schema ({
     city: {type:String, required: true},
     state: {type:String, required: true},
     zip: {type:Number, required: true},
+    telephoneNumber:{type: Number, required: true},
     barrelQuantity: {type:Number, required: true},
     barrelType: {type: Array, required: true},
     country: {type:Array, required: true},

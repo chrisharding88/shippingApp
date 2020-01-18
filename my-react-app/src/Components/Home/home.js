@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const Buttons = (props)  =>{
+const Home = ()  =>{
     return (
         <div>
             <div className ="buttons">
-                <button type = "button" className="btn btn-primary" >Shipping</button>
-                <button type = "button" className="btn btn-primary" >Purchase Barrel / Box</button>
+                <button type = "button" className="btn btn-primary" to="/ShippingPage" >Shipping</button>
+                <button type = "button" className="btn btn-primary"to="/BarrelPage" >Purchase Barrel</button>
             </div>
         </div>
     )
 }
+
+export default Home;

@@ -11,7 +11,7 @@ class Password extends Component {
     }
   }
 
-  handlePasswordChange = () => {
+  handlePasswordChange = (event) => {
     const {user, pass} = event.target
 
     this.setState({
@@ -21,7 +21,7 @@ class Password extends Component {
 
   }
 
-  handleLogInSubmit = () => {
+  handleLogInSubmit = (event) => {
     event.preventDefault();
     this.setState({
       username: "",

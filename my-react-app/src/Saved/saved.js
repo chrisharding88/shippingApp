@@ -36,20 +36,7 @@ getJobInfo = () => {
 
 
 
-render(){
-    return(
 
-
-
-
-    )
-
-
-
-
-
-
-}
 
 
 

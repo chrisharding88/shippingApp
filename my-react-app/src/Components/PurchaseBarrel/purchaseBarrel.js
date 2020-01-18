@@ -18,21 +18,24 @@ export const dropdownBarrels = (props) => {
         <div className="dropdownBarrelMenu">
             <label for="dropdown-menu"> Pick A Barrel:</label>
             <div className="dropdown-menu">
-                <a className="barrels" id="0">SJB Cardboard</a>
-                <a className="barrels" id="1">SJB Plastic</a>
-                <a className="barrels" id="2">Medium Cardboard</a>
-                <a className="barrels" id="3">Medium Plastic</a>
+                <a className="barrels" id={props.id}>{props.barrelType}</a>
             </div>
         </div>
     )
 }
 
-export const price2 =(props) =>{
+export const barrelPrice =(props) =>{
 
     return(
-        <span className="displayBarrelPrice" >{props.children}</span>
+        <span className="displayBarrelPrice" >{props.barrelPrice}</span>
     )
 }
 
-
+export const Submit =() => {
+    return(
+        <div className="submit">
+            <button type="button" className="btn btn-primary">Submit</button>
+        </div>
+    )
+}
 
