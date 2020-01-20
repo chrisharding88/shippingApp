@@ -174,6 +174,9 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="First Name"
 						/>
+						{this.state.firstNameError ? (
+							<div style={{ fontSize: 12, color: 'red' }}>{this.state.firstNameError}</div>
+						) : null}
 					</Col>
 					<Col className="col" size="20">
 						<label htmlFor="lastName">Last Name</label>
@@ -186,6 +189,9 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="Last Name"
 						/>
+						{this.state.lastNameError ? (
+							<div style={{ fontSize: 12, color: 'red' }}>{this.state.lastNameError}</div>
+						) : null}
 					</Col>
 				</Row>
 				<Row className="form-row">
@@ -199,6 +205,9 @@ class Form extends Component {
 						onChange={this.handleFormChange}
 						placeholder="Address"
 					/>
+					{this.state.addressError ? (
+						<div style={{ fontSize: 12, color: 'red' }}>{this.state.addressError}</div>
+					) : null}
 				</Row>
 
 				<Row className="form-row">
@@ -213,6 +222,9 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="City"
 						/>
+						{this.state.cityError ? (
+							<div style={{ fontSize: 12, color: 'red' }}>{this.state.cityError}</div>
+						) : null}
 					</Col>
 					<Col className="col" size="2">
 						<label htmlFor="State">State</label>
