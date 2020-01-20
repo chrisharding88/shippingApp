@@ -1,29 +1,24 @@
-import express from 'express';
-import passport from 'passport';
-import bodyParser from 'body-parser'
-import Cors from 'cors'
+const express = require('express');
 
+const mongoose = require('mongoose');
+const routes = require('./routes');
 const app = express();
+const PORT = process.env.PORT || 3001;
 
-const API_PORT = process.env.API_PORT || 3000;
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+// Add routes, both API and view
+app.use(routes);
 
-require('.config/passport');
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/jobslist');
 
-app.use(Cors())
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json());
-app.use(logger('dev'));
-app.use(passport.initialize());
-
-require('./routes/loginUser')(app)
-require('./routes/registerUser')(app)
-require('./routes/findUsers')(app)
-require('./routes/deleteUser')(app)
-require('./routes/updateUser')(app);
-
-app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
-
-module.exports = app;
-
-
-
+// Start the API server
+app.listen(PORT, function() {
+	console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});

@@ -1,14 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Home = ()  =>{
-    return (
-        <div>
-            <div className ="buttons">
-                <button type = "button" className="btn btn-primary" to="/ShippingPage" >Shipping</button>
-                <button type = "button" className="btn btn-primary"to="/BarrelPage" >Purchase Barrel</button>
-            </div>
-        </div>
-    )
-}
+const Home = () => {
+	return (
+		<div>
+			<div className="buttons">
+				<Link role="button" className="btn btn-primary" to="/ShippingPage">
+					Shipping
+				</Link>
+				<Link role="button" className="btn btn-primary" to="/BarrelPage">
+					Purchase Barrel
+				</Link>
+			</div>
+		</div>
+	);
+};
 
 export default Home;
