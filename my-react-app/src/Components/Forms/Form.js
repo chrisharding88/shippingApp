@@ -74,6 +74,8 @@ class Form extends Component {
 		const telephoneNumber = this.state.telephoneNumber;
 
 		//First Name Validation
+
+		//If the first name input is empty or if it doesn't display any letters
 		if (firstName.length < 0 || !firstName.value.match(letters)) {
 			firstNameError = 'Please enter your first name';
 		}
@@ -84,6 +86,8 @@ class Form extends Component {
 		}
 
 		//Last Name Validation
+
+		//If the last name input is empty or if it doesn't display any letters
 		if (lastName.length < 0 || !lastName.value.match(letters)) {
 			lastNameError = 'Please enter your last name';
 		}
@@ -93,6 +97,8 @@ class Form extends Component {
 		}
 
 		//City Validation
+
+		//If the city input is empty or if it doesn't display any letters
 		if (city.length < 0 || !city.value.match(letters)) {
 			cityError = 'Please enter your last name';
 		}
@@ -103,6 +109,8 @@ class Form extends Component {
 		}
 
 		//Address Validation
+
+		//If the address input is empty
 		if (address.length < 0) {
 			addressError = 'Please enter your address';
 		}
@@ -112,6 +120,7 @@ class Form extends Component {
 		}
 
 		// Email Validation
+		//If the email doesn't include the '@' symbol or if the input box is empty
 		if (!email.includes('@') || email.length < 0) {
 			emailError = 'Invalid Email';
 		}
@@ -123,7 +132,7 @@ class Form extends Component {
 
 		//Telephone Validation
 
-		// If the Telephone number shows a letter
+		// If the Telephone number shows a letter or if it's not 10 digits
 		if (isNaN(telephoneNumber) || telephoneNumber.length < 10) {
 			telNumberError = 'Please enter the telephone number';
 		}
@@ -135,6 +144,7 @@ class Form extends Component {
 
 		//State Validation
 
+		//If the state input has one length or if it's empty or if it doesn't display any letters
 		if (state.length < 2 || state.length < 0 || !state.value.match(letters)) {
 			stateError = 'Please enter the state';
 		}
@@ -144,9 +154,11 @@ class Form extends Component {
 		}
 
 		//Zip Validation
+		// If the zip code is not a number or if it's empty
 		if (isNaN(zip) || zip.length < 0) {
 			zipError = 'Please enter the zip code';
 		} else if (zip.length < 5) {
+			// If the zip has less than five digits
 			zipError = 'Zip code must be five digits';
 			console.log(zip);
 			console.log(zipError);
