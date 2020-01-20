@@ -124,7 +124,7 @@ class Form extends Component {
 		//Telephone Validation
 
 		// If the Telephone number shows a letter
-		if (isNaN(telephoneNumber)) {
+		if (isNaN(telephoneNumber) || telephoneNumber.length < 10) {
 			telNumberError = 'Please enter the telephone number';
 		}
 
@@ -286,6 +286,7 @@ class Form extends Component {
 							value={this.state.telephoneNumber}
 							onChange={this.handleFormChange}
 							placeholder="Telephone Number"
+							maxLength="12"
 						/>
 					</Col>
 					{this.state.telNumberError ? (
