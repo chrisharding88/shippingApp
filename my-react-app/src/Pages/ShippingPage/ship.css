@@ -1,0 +1,24 @@
+.box {
+	margin-top: 15%;
+	border: 2px solid black;
+	height: 475px;
+}
+
+.box-body-ship {
+	margin-top: 5%;
+}
+.ship-buttons {
+	padding: 30px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+#btn-1-ship,
+#btn-2-ship {
+	display: inline-block;
+}
+
+#btn-2-ship {
+	float: right;
+	padding: 30px;
+}

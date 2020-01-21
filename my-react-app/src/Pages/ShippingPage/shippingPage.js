@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { NumberInput, DropdownCountries, ShipPrice, Submit } from '../../Components/ShippingBarrel/shippingBarrel';
 import { Link } from 'react-router-dom';
+import Nav from '../../Components/Nav/nav';
+import './ship.css';
+import Date from '../../Components/Date/date';
 class shippingPage extends Component {
 	state = {
 		shippingQuantity: '',
@@ -51,25 +54,34 @@ class shippingPage extends Component {
 
 		return (
 			<div>
-				<NumberInput value={this.state.shippingQuantity} onChange={this.handleInputChange} />
-				<DropdownCountries
-					value={this.state.selectedCountry}
-					onChange={(event) => this.setState({ selectedCountry: event.target.value })}
-					{...this.state.countries.map((country) => (
-						<option key={country.value} value={country.value}>
-							{country.display}
-						</option>
-					))}
-				/>
-				<ShipPrice />
-				<Submit
-					onClick={() => {
-						this.handleShipSubmit();
-					}}
-				/>
-				<Link role="button" className="btn btn-danger" to="/">
-					Back
-				</Link>
+				<Nav />
+				<div className="box">
+					<div className="box-body-ship">
+						<Date />
+						<NumberInput value={this.state.shippingQuantity} onChange={this.handleInputChange} />
+						<DropdownCountries
+							value={this.state.selectedCountry}
+							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
+							{...this.state.countries.map((country) => (
+								<option key={country.value} value={country.value}>
+									{country.display}
+								</option>
+							))}
+						/>
+						<ShipPrice />
+						<div className="ship-buttons">
+							<Submit
+								onClick={() => {
+									this.handleShipSubmit();
+								}}
+								id="btn-1-ship"
+							/>
+							<Link role="button" className="btn btn-danger" id="btn-2-ship" to="/">
+								Back
+							</Link>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}

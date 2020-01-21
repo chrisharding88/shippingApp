@@ -24,6 +24,9 @@ class Form extends Component {
 			zipError: '',
 			emailError: ''
 		};
+
+		this.handleFormChange = this.handleFormChange.bind(this);
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 	}
 
 	handleFormChange = (event) => {
@@ -53,6 +56,7 @@ class Form extends Component {
 	};
 
 	validate = () => {
+		//Dependencies
 		let firstNameError = '';
 		let lastNameError = '';
 		let addressError = '';
@@ -62,6 +66,7 @@ class Form extends Component {
 		let emailError = '';
 		let telNumberError = '';
 
+		//Regular Expresion
 		const letters = /^[A-Za-z]+$/;
 
 		const firstName = this.state.firstName;
@@ -74,46 +79,44 @@ class Form extends Component {
 		const telephoneNumber = this.state.telephoneNumber;
 
 		//First Name Validation
-
 		//If the first name input is empty or if it doesn't display any letters
 		if (firstName.length < 0 || !firstName.value.match(letters)) {
 			firstNameError = 'Please enter your first name';
 		}
-
+		//Displays the error
 		if (firstNameError) {
 			this.setState({ firstNameError });
 			return false;
 		}
 
 		//Last Name Validation
-
 		//If the last name input is empty or if it doesn't display any letters
 		if (lastName.length < 0 || !lastName.value.match(letters)) {
 			lastNameError = 'Please enter your last name';
 		}
+		//Displays the error
 		if (lastNameError) {
 			this.setState({ lastNameError });
 			return false;
 		}
 
 		//City Validation
-
 		//If the city input is empty or if it doesn't display any letters
 		if (city.length < 0 || !city.value.match(letters)) {
 			cityError = 'Please enter your last name';
 		}
-
+		//Displays the error
 		if (cityError) {
 			this.setState({ cityError });
 			return false;
 		}
 
 		//Address Validation
-
 		//If the address input is empty
 		if (address.length < 0) {
 			addressError = 'Please enter your address';
 		}
+		//Displays the error
 		if (addressError) {
 			this.setState({ addressError });
 			return false;
@@ -124,7 +127,7 @@ class Form extends Component {
 		if (!email.includes('@') || email.length < 0) {
 			emailError = 'Invalid Email';
 		}
-
+		//Displays the error
 		if (emailError) {
 			this.setState({ emailError });
 			return false;
@@ -136,18 +139,18 @@ class Form extends Component {
 		if (isNaN(telephoneNumber) || telephoneNumber.length < 10) {
 			telNumberError = 'Please enter the telephone number';
 		}
-
+		//Displays the error
 		if (telNumberError) {
 			this.setState({ telNumberError });
 			return false;
 		}
 
 		//State Validation
-
 		//If the state input has one length or if it's empty or if it doesn't display any letters
 		if (state.length < 2 || state.length < 0 || !state.value.match(letters)) {
 			stateError = 'Please enter the state';
 		}
+		//Displays the error
 		if (stateError) {
 			this.setState({ stateError });
 			return false;
@@ -163,7 +166,7 @@ class Form extends Component {
 			console.log(zip);
 			console.log(zipError);
 		}
-
+		//Displays the error
 		if (zipError) {
 			this.setState({ zipError });
 			return false;

@@ -1,0 +1,33 @@
+.box {
+	border: 2px solid black;
+	margin-top: 20%;
+	height: 475px;
+}
+
+.box-body {
+	margin-top: 15%;
+}
+
+.buttons {
+	padding: 30px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+#btn-1,
+#btn-2 {
+	display: inline-block;
+}
+
+#btn-1 {
+	float: left;
+	margin-left: 250px;
+}
+
+#btn-2 {
+	float: right;
+	margin-right: 240px;
+}
+.btn-primary {
+	padding: 25px;
+}
