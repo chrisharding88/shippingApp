@@ -309,7 +309,13 @@ class Form extends Component {
 					) : null}
 				</Row>
 
-				<button type="submit" className="btn btn-primary" onChange={this.handleFormSubmit}>
+				<button
+					type="submit"
+					className="btn btn-primary"
+					onClick={(e) => {
+						this.handleFormSubmit(e);
+					}}
+				>
 					Submit
 				</button>
 			</form>

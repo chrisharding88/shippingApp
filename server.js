@@ -1,44 +1,41 @@
 const express = require('express');
-
+const shippingjson = require('./shippingBarrelPrices');
 const mongoose = require('mongoose');
-const routes = require('./routes');
+// const routes = require('./routes');
 const app = express();
-const session = require('express-session');
-const passport = require('passport');
+// const session = require('express-session');
+// const passport = require('passport');
 const PORT = process.env.PORT || 3001;
 
-
-const index = require('./routes/index')
-const users = require('./routes/users')
-const auth = require('./routes/auth')(passport)
-
-
+// const index = require('./routes/index');
+// const users = require('./routes/users');
+// const auth = require('./routes/auth')(passport);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
+/*app.use(
 	session({
 		secret: 'thesecret',
 		saveUninitialized: false,
 		resave: false
 	})
 );
-app.use(passport.initialize())
-app.use(passport.session())
-app.use('/', index)
-app.use('/users', users)
-app.use('/auth', auth)
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/', index);
+app.use('/users', users);
+app.use('/auth', auth);*/
 
-
-app.
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 }
 // Add routes, both API and view
-app.use(routes);
-
+// app.use(routes);
+app.get('/api/country', function(req, res) {
+	res.json(shippingjson);
+});
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/jobslist');
 

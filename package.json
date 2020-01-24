@@ -1,28 +1,31 @@
 {
-  "name": "shippingapp",
-  "version": "1.0.0",
-  "description": "To let the user type in the shipping information",
-  "main": "server.js",
-  "dependencies": {
-    "concurrently": "^5.0.2",
-    "express": "^4.17.1",
-    "express-router": "0.0.1",
-    "mongoose": "^5.8.9",
-    "package.json": "^2.0.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chrisharding88/shippingApp.git"
-  },
-  "author": "Christopher Harding",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chrisharding88/shippingApp/issues"
-  },
-  "homepage": "https://github.com/chrisharding88/shippingApp#readme"
+	"name": "shippingapp",
+	"version": "1.0.0",
+	"description": "To let the user type in the shipping information",
+	"main": "server.js",
+	"dependencies": {
+		"concurrently": "^5.0.2",
+		"express": "^4.17.1",
+		"express-router": "0.0.1",
+		"mongoose": "^5.8.9",
+		"package.json": "^2.0.1"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+		"start:prod": "node server.js",
+		"start:dev": "concurrently \"nodemon --ignore 'my-react-app/*'\" \"npm run my-react-app\"",
+		"my-react-app": "cd my-react-app && npm run start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/chrisharding88/shippingApp.git"
+	},
+	"author": "Christopher Harding",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/chrisharding88/shippingApp/issues"
+	},
+	"homepage": "https://github.com/chrisharding88/shippingApp#readme"
 }

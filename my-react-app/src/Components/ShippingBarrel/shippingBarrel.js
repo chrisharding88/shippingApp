@@ -1,29 +1,22 @@
 import React from 'react';
 
-export const NumberInput = () => {
-	return (
-		<div className="numberInput">
-			<label>How Many Barrels Are You Sending:</label>
-			<input type="number" className="barrelQuantity" size="2" required />
-		</div>
-	);
-};
-
 export const DropdownCountries = (props) => {
 	return (
 		<div className="dropdownCountriesMenu" id="country">
 			<label for="dropdown-menu"> Country:</label>
-			<div className="dropdown-menu">
-				<a className="country" id={props.id}>
-					{props.country}
-				</a>
-			</div>
+			<select onChange={(event) => props.onChange(event)}>{props.children}</select>
 		</div>
 	);
 };
 
 export const ShipPrice = (props) => {
-	return <span className="displayShippingBarrelPrice">{props.shippingPrice}</span>;
+	return (
+		<div>
+			<span className="displayShippingBarrelPrice" onChange={(event) => props.onChange(event)}>
+				{props.children}
+			</span>
+		</div>
+	);
 };
 
 export const Submit = (props) => {

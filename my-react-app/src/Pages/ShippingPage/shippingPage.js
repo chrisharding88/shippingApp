@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { NumberInput, DropdownCountries, ShipPrice, Submit } from '../../Components/ShippingBarrel/shippingBarrel';
+import { DropdownCountries, ShipPrice, Submit } from '../../Components/ShippingBarrel/shippingBarrel';
 import { Link } from 'react-router-dom';
 import Nav from '../../Components/Nav/nav';
 import './ship.css';
 import Date from '../../Components/Date/date';
+
 class shippingPage extends Component {
 	state = {
 		shippingQuantity: '',
@@ -11,68 +12,81 @@ class shippingPage extends Component {
 		selectedCountry: ''
 	};
 
-	/*componentDidMount() {
-		fetch()
-			.then((Response) => {
-				Response.shippingBarrelPrices.json();
+	componentDidMount() {
+		fetch('/api/country')
+			.then((response) => {
+				return response.json();
 			})
 			.then((data) => {
+				console.log(data);
 				let countriesfromAPI = data.map((country) => {
 					return { value: country, display: country };
 				});
 				this.setState({
-					countries: [ { value: '', display: '(Select a Country)' } ]
+					countries: data
 				});
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-	}*/
+	}
 
 	handleInputChange = (event) => {
-		const { number, value } = event.target;
+		const { name, value } = event.target;
 		this.setState({
-			[number]: value
+			[name]: value
 		});
 	};
 
 	handleShipSubmit = (event) => {
-		// event.preventDefault();
-		/*this.setState({
+		event.preventDefault();
+		this.setState({
 			shippingQuantity: '',
-			selectedCountry: ''
-		});*/
+			selectedCountry: '',
+			countries: []
+		});
 		console.log('handleShip');
-		// return <Redirect to="/form" />;
 		this.props.history.push('/form');
 	};
 
 	render() {
-		/*if (Submit) {
-			<Redirect to={Form} />;
-		}*/
-
 		return (
 			<div>
 				<Nav />
 				<div className="box">
 					<div className="box-body-ship">
 						<Date />
-						<NumberInput value={this.state.shippingQuantity} onChange={this.handleInputChange} />
+						<div className="numberInput">
+							<label>How Many Barrels Are You Sending:</label>
+							<input
+								type="text"
+								value={this.state.shippingQuantity}
+								className="barrelQuantity"
+								name="shippingQuantity"
+								onChange={this.handleInputChange}
+								required
+							/>
+						</div>
 						<DropdownCountries
 							value={this.state.selectedCountry}
 							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
-							{...this.state.countries.map((country) => (
-								<option key={country.value} value={country.value}>
-									{country.display}
-								</option>
+						>
+							{this.state.countries.map((country) => (
+								<option value={country.shippingPrice}>{country.country}</option>
 							))}
-						/>
-						<ShipPrice />
+						</DropdownCountries>
+
+						<ShipPrice
+							value={this.state.selectedCountry}
+							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
+						>
+							<span value={this.state.selectedCountry}>{this.state.selectedCountry}</span>
+						</ShipPrice>
+						<div> Total: ${this.state.selectedCountry * this.state.shippingQuantity}</div>
 						<div className="ship-buttons">
 							<Submit
-								onClick={() => {
-									this.handleShipSubmit();
+								onClick={(e) => {
+									this.handleShipSubmit(e);
 								}}
 								id="btn-1-ship"
 							/>
