@@ -1,6 +1,6 @@
 import React from 'react';
 
-const JobsTable = () => {
+const JobsTable = (props) => {
 	return (
 		<div>
 			<table className="table table-hover table-dark">
@@ -13,18 +13,13 @@ const JobsTable = () => {
 						<th scope="col">Delivery</th>
 						<th scope="col">Destination</th>
 						<th scope="col">Price</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row" />
-						<td />
-						<td />
-						<td />
-						<td />
-						<td />
-						<td />
-						<td />
+						<td>{props.children}</td>
 					</tr>
 				</tbody>
 			</table>

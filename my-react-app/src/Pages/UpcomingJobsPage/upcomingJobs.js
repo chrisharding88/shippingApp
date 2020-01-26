@@ -7,7 +7,17 @@ class UpcomingJobsPage extends Component {
 		return (
 			<div>
 				<Nav />
-				<JobsTable />
+				<JobsTable>
+					<td />
+					<td />
+					<td />
+					<td />
+					<td />
+					<td />
+					<td />
+					<td />
+					<td />
+				</JobsTable>
 			</div>
 		);
 	}

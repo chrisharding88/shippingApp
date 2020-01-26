@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Col from '../Col';
 import Row from '../Row';
 import './styles.css';
+import { Link } from 'react-router-dom';
+import Modal from '../Modal/modal';
+// import ConfirmPage from '../../Pages/ConfirmPage/confirmPage';
 
 class Form extends Component {
 	constructor(props) {
@@ -22,13 +25,16 @@ class Form extends Component {
 			cityError: '',
 			stateError: '',
 			zipError: '',
-			emailError: ''
+			emailError: '',
+			modal: false
 		};
 
 		this.handleFormChange = this.handleFormChange.bind(this);
 		this.handleFormSubmit = this.handleFormSubmit.bind(this);
 	}
-
+	componentDidMount() {
+		console.log(this.props.location.state);
+	}
 	handleFormChange = (event) => {
 		const { name, value } = event.target;
 
@@ -38,21 +44,51 @@ class Form extends Component {
 	};
 
 	handleFormSubmit = (event) => {
-		event.PreventDefault();
+		event.preventDefault();
 		const isValid = this.validate();
 		if (isValid) {
 			this.setState({
-				firstName: '',
+				/*firstName: '',
 				lastName: '',
 				address: '',
 				city: '',
 				state: '',
 				zip: '',
 				email: '',
-				telephoneNumber: ''
+				telephoneNumber: '',*/
+				modal: true
 			});
-			console.log(this.state.firstName);
 		}
+	};
+
+	toggleModal = () => {
+		this.setState({ modal: !this.state.modal });
+	};
+
+	sendShipData = () => {
+		const formData = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			address: this.state.address,
+			city: this.state.city,
+			state: this.state.state,
+			zip: this.state.zip,
+			email: this.state.email
+		};
+		console.log(formData);
+		return fetch('/api/shipping', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application.json'
+			},
+			body: JSON.stringify(formData)
+		})
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(data) {
+				console.log('Created Gist:', data);
+			});
 	};
 
 	validate = () => {
@@ -70,7 +106,7 @@ class Form extends Component {
 		const letters = /^[A-Za-z]+$/;
 
 		const firstName = this.state.firstName;
-		const lastName = this.state.lasttName;
+		const lastName = this.state.lastName;
 		const address = this.state.address;
 		const city = this.state.city;
 		const state = this.state.state;
@@ -80,7 +116,7 @@ class Form extends Component {
 
 		//First Name Validation
 		//If the first name input is empty or if it doesn't display any letters
-		if (firstName.length < 0 || !firstName.value.match(letters)) {
+		if (firstName.length < 0 || !firstName.match(letters)) {
 			firstNameError = 'Please enter your first name';
 		}
 		//Displays the error
@@ -91,7 +127,7 @@ class Form extends Component {
 
 		//Last Name Validation
 		//If the last name input is empty or if it doesn't display any letters
-		if (lastName.length < 0 || !lastName.value.match(letters)) {
+		if (lastName.length < 0 || !lastName.match(letters)) {
 			lastNameError = 'Please enter your last name';
 		}
 		//Displays the error
@@ -102,8 +138,8 @@ class Form extends Component {
 
 		//City Validation
 		//If the city input is empty or if it doesn't display any letters
-		if (city.length < 0 || !city.value.match(letters)) {
-			cityError = 'Please enter your last name';
+		if (city.length < 0 || !city.match(letters)) {
+			cityError = 'Please enter your city';
 		}
 		//Displays the error
 		if (cityError) {
@@ -147,7 +183,7 @@ class Form extends Component {
 
 		//State Validation
 		//If the state input has one length or if it's empty or if it doesn't display any letters
-		if (state.length < 2 || state.length < 0 || !state.value.match(letters)) {
+		if (state.length < 2 || state.length < 0 || !state.match(letters)) {
 			stateError = 'Please enter the state';
 		}
 		//Displays the error
@@ -177,6 +213,24 @@ class Form extends Component {
 	render() {
 		return (
 			<form>
+				{this.state.modal ? (
+					<Modal toggleModal={this.toggleModal} sendShipData={this.sendShipData}>
+						<p>First Name: {this.state.firstName}</p>
+						<p>Last Name: {this.state.lastName}</p>
+						<p>Address: {this.state.address}</p>
+						<p>City: {this.state.city}</p>
+						<p>State: {this.state.state}</p>
+						<p>Zip: {this.state.zip}</p>
+						<p>Telephone Number: {this.state.telephoneNumber}</p>
+						<p>Date of Pickup:{this.state.pickupDate}</p>
+						<p>Barrel Quantity: {this.props.location.state.shippingQuantity}</p>
+						<p>Destination:{this.props.location.state.countries.country}</p>
+						<p>
+							Total:{this.props.location.state.shippingQuantity *
+								this.props.location.state.selectedCountry}
+						</p>
+					</Modal>
+				) : null}
 				<Row className="form-row">
 					<Col className="col" size="20">
 						<label htmlFor="firstName">First Name</label>
@@ -189,9 +243,11 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="First Name"
 						/>
-						{this.state.firstNameError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.firstNameError}</div>
-						) : null}
+						<div>
+							{this.state.firstNameError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.firstNameError}</div>
+							) : null}
+						</div>
 					</Col>
 					<Col className="col" size="20">
 						<label htmlFor="lastName">Last Name</label>
@@ -204,9 +260,11 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="Last Name"
 						/>
-						{this.state.lastNameError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.lastNameError}</div>
-						) : null}
+						<div>
+							{this.state.lastNameError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.lastNameError}</div>
+							) : null}
+						</div>
 					</Col>
 				</Row>
 				<Row className="form-row">
@@ -220,9 +278,11 @@ class Form extends Component {
 						onChange={this.handleFormChange}
 						placeholder="Address"
 					/>
-					{this.state.addressError ? (
-						<div style={{ fontSize: 12, color: 'red' }}>{this.state.addressError}</div>
-					) : null}
+					<div>
+						{this.state.addressError ? (
+							<div style={{ fontSize: 12, color: 'red' }}>{this.state.addressError}</div>
+						) : null}
+					</div>
 				</Row>
 
 				<Row className="form-row">
@@ -237,9 +297,11 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="City"
 						/>
-						{this.state.cityError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.cityError}</div>
-						) : null}
+						<div>
+							{this.state.cityError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.cityError}</div>
+							) : null}
+						</div>
 					</Col>
 					<Col className="col" size="2">
 						<label htmlFor="State">State</label>
@@ -253,9 +315,11 @@ class Form extends Component {
 							maxLength="2"
 							placeholder="State"
 						/>
-						{this.state.stateError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.stateError}</div>
-						) : null}
+						<div>
+							{this.state.stateError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.stateError}</div>
+							) : null}
+						</div>
 					</Col>
 					<Col className="col" size="10">
 						<label htmlFor="Zip">Zip</label>
@@ -269,9 +333,11 @@ class Form extends Component {
 							maxLength="5"
 							placeholder="Zip"
 						/>
-						{this.state.zipError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.zipError}</div>
-						) : null}
+						<div>
+							{this.state.zipError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.zipError}</div>
+							) : null}
+						</div>
 					</Col>
 				</Row>
 
@@ -287,9 +353,11 @@ class Form extends Component {
 							onChange={this.handleFormChange}
 							placeholder="Email Address"
 						/>
-						{this.state.emailError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.emailError}</div>
-						) : null}
+						<div>
+							{this.state.emailError ? (
+								<div style={{ fontSize: 12, color: 'red' }}>{this.state.emailError}</div>
+							) : null}
+						</div>
 					</Col>
 					<Col className="col" size="10">
 						<label htmlFor="telNumber">Telephone Number</label>
@@ -297,16 +365,18 @@ class Form extends Component {
 							type="text"
 							className="form-control"
 							id="telNumber"
-							name="telNumber"
+							name="telephoneNumber"
 							value={this.state.telephoneNumber}
 							onChange={this.handleFormChange}
 							placeholder="Telephone Number"
 							maxLength="12"
 						/>
 					</Col>
-					{this.state.telNumberError ? (
-						<div style={{ fontSize: 12, color: 'red' }}>{this.state.telNumberError}</div>
-					) : null}
+					<div>
+						{this.state.telNumberError ? (
+							<div style={{ fontSize: 12, color: 'red' }}>{this.state.telNumberError}</div>
+						) : null}
+					</div>
 				</Row>
 
 				<button

@@ -1,0 +1,22 @@
+[
+	{
+		"id": 0,
+		"barrel": "SJB Cardboard",
+		"barrelPrice": "$35"
+	},
+	{
+		"id": 1,
+		"barrel": "SJB Plastic",
+		"barrelPrice": "$45"
+	},
+	{
+		"id": 2,
+		"barrel": "Medium Cardboard",
+		"barrelPrice": "$25"
+	},
+	{
+		"id": 3,
+		"barrel": "Medium Plastic",
+		"barrelPrice": "$35"
+	}
+]

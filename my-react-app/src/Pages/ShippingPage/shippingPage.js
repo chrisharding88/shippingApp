@@ -9,7 +9,8 @@ class shippingPage extends Component {
 	state = {
 		shippingQuantity: '',
 		countries: [],
-		selectedCountry: ''
+		selectedCountry: '',
+		pickupDate: ''
 	};
 
 	componentDidMount() {
@@ -43,10 +44,18 @@ class shippingPage extends Component {
 		this.setState({
 			shippingQuantity: '',
 			selectedCountry: '',
+			pickupDate: '',
 			countries: []
 		});
 		console.log('handleShip');
-		this.props.history.push('/form');
+		this.props.history.push({
+			pathname: '/form',
+			state: {
+				shippingQuantity: this.state.shippingQuantity,
+				selectedCountry: this.state.selectedCountry,
+				countries: this.state.countries.find((x) => x.country.length == this.state.countries)
+			}
+		});
 	};
 
 	render() {
@@ -55,13 +64,13 @@ class shippingPage extends Component {
 				<Nav />
 				<div className="box">
 					<div className="box-body-ship">
-						<Date />
+						<Date value={this.state.pickupDate} />
 						<div className="numberInput">
 							<label>How Many Barrels Are You Sending:</label>
 							<input
 								type="text"
 								value={this.state.shippingQuantity}
-								className="barrelQuantity"
+								className="shippingQuantity"
 								name="shippingQuantity"
 								onChange={this.handleInputChange}
 								required
@@ -72,7 +81,9 @@ class shippingPage extends Component {
 							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
 						>
 							{this.state.countries.map((country) => (
-								<option value={country.shippingPrice}>{country.country}</option>
+								<option value={country.shippingPrice} id={country.country}>
+									{country.country}
+								</option>
 							))}
 						</DropdownCountries>
 

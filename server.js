@@ -1,5 +1,7 @@
 const express = require('express');
+const barreljson = require('./barrelPrices');
 const shippingjson = require('./shippingBarrelPrices');
+const shippingData = require('./Models/jobDB');
 const mongoose = require('mongoose');
 // const routes = require('./routes');
 const app = express();
@@ -35,6 +37,15 @@ if (process.env.NODE_ENV === 'production') {
 // app.use(routes);
 app.get('/api/country', function(req, res) {
 	res.json(shippingjson);
+});
+app.get('/api/barrel', function(req, res) {
+	res.json(barreljson);
+});
+app.post('/api/shipping', function(req, res) {
+	console.log(req.body);
+	shippingData.create(req.body).then((data) => {
+		res.json(data);
+	});
 });
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/jobslist');

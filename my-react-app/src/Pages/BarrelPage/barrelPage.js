@@ -1,49 +1,65 @@
 import React, { Component } from 'react';
-import { NumberInput2, DropdownBarrels, BarrelPrice, Submit } from '../../Components/PurchaseBarrel/purchaseBarrel';
+import { DropdownBarrels, BarrelPrice, Submit } from '../../Components/PurchaseBarrel/purchaseBarrel';
 import { Link } from 'react-router-dom';
 import Nav from '../../Components/Nav/nav';
+import './barrel.css';
 import Date from '../../Components/Date/date';
 
 class barrelPage extends Component {
 	state = {
 		barrelQuantity: '',
 		barrelTypes: [],
-		selectedBarrel: ''
+		selectedBarrel: '',
+		quantityError: ''
 	};
 
-	/*componentDidMount() {
-		fetch()
-			.then((Response) => {
-				Response.barrelPrices.json();
+	componentDidMount() {
+		fetch('/api/barrel')
+			.then((response) => {
+				response.json();
 			})
 			.then((data) => {
-				let barrelsfromAPI = data.map((barrelType) => {
-					return { value: barrelType, display: barrelType };
+				let barrelsfromAPI = data.map((barrel) => {
+					return { value: barrel, display: barrel };
 				});
 				this.setState({
-					barrelTypes: [ { value: '', display: '(Select a Barrel)' } ]
+					barrels: data
 				});
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-    }*/
+	}
 
 	handleInputChange = (event) => {
-		const { number, value } = event.target;
+		const { name, value } = event.target;
 		this.setState({
-			[number]: value
+			[name]: value
 		});
 	};
 
 	handleBuySubmit = (event) => {
-		// event.preventDefault();
+		event.preventDefault();
 		this.setState({
 			barrelQuantity: '',
 			selectedBarrel: ''
 		});
 		this.props.history.push('/form');
 	};
+
+	/*numberValidation = () => {
+		const validBarrelQuanity = this.state.barrelQuantity;
+		let quantityError = '';
+
+		if (isNaN(validBarrelQuanity)) {
+			quantityError = 'Please Enter The Amount Of Barrel You Want To Purchase';
+		}
+
+		if (quantityError) {
+			this.setState({ quantityError });
+			return false
+		}
+	};*/
 
 	render() {
 		return (
@@ -52,18 +68,33 @@ class barrelPage extends Component {
 				<div className="box">
 					<div className="box-body-barrel">
 						<Date />
-						<NumberInput2 value={this.state.barrelQuantity} onChange={this.handleInputChange} />
+						<div className="numberInput">
+							<label>Pick A Barrel:</label>
+							<input
+								type="text"
+								value={this.state.barrelQuantity}
+								className="barrelQuantity"
+								name="barrelQuantity"
+								onChange={this.handleInputChange}
+								required
+							/>
+						</div>
 						<DropdownBarrels
 							value={this.state.selectedBarrel}
 							onChange={(event) => this.setState({ selectedBarrel: event.target.value })}
-							{...this.state.barrelTypes.map((barrelType) => (
-								<option key={barrelType.value} value={barrelType.value}>
-									{barrelType.display}
-								</option>
+						>
+							{this.state.barrels.map((barrel) => (
+								<option value={barrel.barrelPrice}>{barrel.barrel}</option>
 							))}
-						/>
-						<BarrelPrice />
-						<Submit onClick={() => this.handleBuySubmit()} />
+						</DropdownBarrels>
+						<BarrelPrice
+							value={this.state.selectedBarrel}
+							onChange={(event) => this.setState({ selectedBarrel: event.target.value })}
+						>
+							<span value={this.state.selectedBarrel}>{this.state.selectedBarrel}</span>
+						</BarrelPrice>
+						<div> Total: ${this.state.selectedBarrel * this.state.shippingBarrel}</div>
+						<Submit onClick={(e) => this.handleBuySubmit(e)} />
 						<Link role="button" className="btn btn-danger" to="/">
 							Back
 						</Link>
