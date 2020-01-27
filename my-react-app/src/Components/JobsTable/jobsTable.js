@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './jobsTable.css';
 const JobsTable = (props) => {
 	return (
 		<div>
-			<table className="table table-hover table-dark">
+			<table className="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Date</th>

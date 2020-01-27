@@ -1,0 +1,12 @@
+nav.navbar {
+	background-color: white;
+}
+.logo {
+	width: 30px;
+	height: 30px;
+}
+
+a.nav-link,
+a.navbar-brand {
+	font-family: 'Noto Serif JP', serif;
+}

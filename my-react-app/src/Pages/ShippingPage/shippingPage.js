@@ -4,15 +4,20 @@ import { Link } from 'react-router-dom';
 import Nav from '../../Components/Nav/nav';
 import './ship.css';
 import Date from '../../Components/Date/date';
+import Logo from '../../bescoLogo.jpg';
 
 class shippingPage extends Component {
-	state = {
-		shippingQuantity: '',
-		countries: [],
-		selectedCountry: '',
-		pickupDate: ''
-	};
-
+	constructor(props) {
+		super(props);
+		this.state = {
+			shippingQuantity: '',
+			countries: [],
+			selectedCountry: '',
+			pickupDate: ''
+		};
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleShipSubmit = this.handleShipSubmit.bind(this);
+	}
 	componentDidMount() {
 		fetch('/api/country')
 			.then((response) => {
@@ -48,12 +53,13 @@ class shippingPage extends Component {
 			countries: []
 		});
 		console.log('handleShip');
+		console.log(this.state.countries);
 		this.props.history.push({
 			pathname: '/form',
 			state: {
 				shippingQuantity: this.state.shippingQuantity,
 				selectedCountry: this.state.selectedCountry,
-				countries: this.state.countries.find((x) => x.country.length == this.state.countries)
+				countries: this.state.countries.find((i) => i.country === this.state.countries)
 			}
 		});
 	};
@@ -62,8 +68,9 @@ class shippingPage extends Component {
 		return (
 			<div>
 				<Nav />
-				<div className="box">
+				<div className="box2">
 					<div className="box-body-ship">
+						<img src={Logo} alt="bescoLogo" className="bescoLogo" />
 						<Date value={this.state.pickupDate} />
 						<div className="numberInput">
 							<label>How Many Barrels Are You Sending:</label>

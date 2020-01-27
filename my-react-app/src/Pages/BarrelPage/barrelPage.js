@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 import Nav from '../../Components/Nav/nav';
 import './barrel.css';
 import Date from '../../Components/Date/date';
+import Logo from '../../bescoLogo.jpg';
 
 class barrelPage extends Component {
 	state = {
 		barrelQuantity: '',
-		barrelTypes: [],
-		selectedBarrel: '',
-		quantityError: ''
+		barrels: [],
+		selectedBarrel: ''
 	};
 
 	componentDidMount() {
 		fetch('/api/barrel')
 			.then((response) => {
-				response.json();
+				return response.json();
 			})
 			.then((data) => {
 				let barrelsfromAPI = data.map((barrel) => {
@@ -42,9 +42,18 @@ class barrelPage extends Component {
 		event.preventDefault();
 		this.setState({
 			barrelQuantity: '',
-			selectedBarrel: ''
+			selectedBarrel: '',
+			barrels: []
 		});
-		this.props.history.push('/form');
+		console.log(this.state.barrels);
+		this.props.history.push('/form')({
+			pathname: '/form',
+			state: {
+				barrelQuantity: this.state.barrelQuantity,
+				selectedBarrel: this.state.selectedBarrel,
+				barrels: this.state.barrels.find((i) => i.barrel === this.state.barrels)
+			}
+		});
 	};
 
 	/*numberValidation = () => {
@@ -65,11 +74,12 @@ class barrelPage extends Component {
 		return (
 			<div>
 				<Nav />
-				<div className="box">
+				<div className="box3">
 					<div className="box-body-barrel">
+						<img src={Logo} alt="bescoLogo" className="bescoLogo" />
 						<Date />
 						<div className="numberInput">
-							<label>Pick A Barrel:</label>
+							<label>How Many Barrels:</label>
 							<input
 								type="text"
 								value={this.state.barrelQuantity}
@@ -93,7 +103,7 @@ class barrelPage extends Component {
 						>
 							<span value={this.state.selectedBarrel}>{this.state.selectedBarrel}</span>
 						</BarrelPrice>
-						<div> Total: ${this.state.selectedBarrel * this.state.shippingBarrel}</div>
+						<div> Total: ${this.state.selectedBarrel * this.state.barrelQuantity}</div>
 						<Submit onClick={(e) => this.handleBuySubmit(e)} />
 						<Link role="button" className="btn btn-danger" to="/">
 							Back

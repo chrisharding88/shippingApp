@@ -1,5 +1,30 @@
-.box {
+.box3 {
 	border: 2px solid black;
-	margin-top: 20%;
+	margin-top: 10%;
+	margin-left: 30%;
 	height: 475px;
+	width: 800px;
+	background-color: white;
+	font-family: 'Noto Serif JP', serif;
+	opacity: 0.91;
+}
+
+.barrelQuantity {
+	width: 50px;
+}
+
+.ship-buttons {
+	padding: 30px;
+	margin: 10px;
+	overflow: hidden;
+}
+
+#btn-1-ship,
+#btn-2-ship {
+	display: inline-block;
+}
+
+#btn-2-ship {
+	float: right;
+	padding: 30px;
 }

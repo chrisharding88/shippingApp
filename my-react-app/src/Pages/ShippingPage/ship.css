@@ -1,11 +1,19 @@
-.box {
-	margin-top: 15%;
+.box2 {
 	border: 2px solid black;
 	height: 475px;
+	width: 800px;
+	background-color: white;
+	font-family: 'Noto Serif JP', serif;
+	margin-top: 10%;
+	margin-left: 30%;
+	opacity: 0.91;
 }
 
 .box-body-ship {
-	margin-top: 5%;
+	margin-top: 3%;
+}
+.shippingQuantity {
+	width: 50px;
 }
 .ship-buttons {
 	padding: 30px;

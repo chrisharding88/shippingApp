@@ -47,6 +47,17 @@ app.post('/api/shipping', function(req, res) {
 		res.json(data);
 	});
 });
+
+app.get('api/shipping/:id', function(req, res) {
+	console.log(shippingData);
+	shippingData.findById(req.params.id).exec(function(err, shippingData) {
+		if (err) {
+			console.log('Error');
+		} else {
+			res.json(shippingData);
+		}
+	});
+});
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/jobslist');
 
