@@ -21,10 +21,8 @@ export const BarrelPrice = (props) => {
 
 export const Submit = (props) => {
 	return (
-		<div className="submit">
-			<button type="button" className="btn btn-primary" onClick={props.onClick}>
-				Submit
-			</button>
-		</div>
+		<button type="button" className="btn btn-primary" onClick={props.onClick}>
+			Submit
+		</button>
 	);
 };

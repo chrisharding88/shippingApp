@@ -100,7 +100,7 @@ class shippingPage extends Component {
 						>
 							<span value={this.state.selectedCountry}>{this.state.selectedCountry}</span>
 						</ShipPrice>
-						<div> Total: ${this.state.selectedCountry * this.state.shippingQuantity}</div>
+						<div id="totalPrice"> Total: ${this.state.selectedCountry * this.state.shippingQuantity}</div>
 						<div className="ship-buttons">
 							<Submit
 								onClick={(e) => {

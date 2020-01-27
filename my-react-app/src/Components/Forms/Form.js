@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Col from '../Col';
 import Row from '../Row';
 import './styles.css';
+import Logo from '../../bescoLogo.jpg';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/modal';
+import Nav from '../Nav/nav';
 // import ConfirmPage from '../../Pages/ConfirmPage/confirmPage';
 
 class Form extends Component {
@@ -212,183 +214,190 @@ class Form extends Component {
 
 	render() {
 		return (
-			<form>
-				{this.state.modal ? (
-					<Modal toggleModal={this.toggleModal} sendShipData={this.sendShipData}>
-						<p>First Name: {this.state.firstName}</p>
-						<p>Last Name: {this.state.lastName}</p>
-						<p>Address: {this.state.address}</p>
-						<p>City: {this.state.city}</p>
-						<p>State: {this.state.state}</p>
-						<p>Zip: {this.state.zip}</p>
-						<p>Telephone Number: {this.state.telephoneNumber}</p>
-						<p>Date of Pickup:{this.state.pickupDate}</p>
-						<p>Barrel Quantity: {this.props.location.state.shippingQuantity}</p>
-						<p>Destination:{this.props.location.state.countries.country}</p>
-						<p>
-							Total:{this.props.location.state.shippingQuantity *
-								this.props.location.state.selectedCountry}
-						</p>
-					</Modal>
-				) : null}
-				<Row className="form-row">
-					<Col className="col" size="20">
-						<label htmlFor="firstName">First Name</label>
-						<input
-							type="text"
-							className="form-control"
-							id="firstName"
-							name="firstName"
-							value={this.state.firstName}
-							onChange={this.handleFormChange}
-							placeholder="First Name"
-						/>
-						<div>
-							{this.state.firstNameError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.firstNameError}</div>
-							) : null}
-						</div>
-					</Col>
-					<Col className="col" size="20">
-						<label htmlFor="lastName">Last Name</label>
-						<input
-							type="text"
-							className="form-control"
-							id="lastName"
-							name="lastName"
-							value={this.state.lastName}
-							onChange={this.handleFormChange}
-							placeholder="Last Name"
-						/>
-						<div>
-							{this.state.lastNameError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.lastNameError}</div>
-							) : null}
-						</div>
-					</Col>
-				</Row>
-				<Row className="form-row">
-					<label htmlFor="address">Address</label>
-					<input
-						type="text"
-						className="form-control"
-						id="address"
-						name="address"
-						value={this.state.address}
-						onChange={this.handleFormChange}
-						placeholder="Address"
-					/>
-					<div>
-						{this.state.addressError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.addressError}</div>
+			<div>
+				<Nav />
+				<div className="box4">
+					<form>
+						<img src={Logo} alt="bescoLogo" className="bescoLogo" />
+
+						{this.state.modal ? (
+							<Modal toggleModal={this.toggleModal} sendShipData={this.sendShipData}>
+								<p>First Name: {this.state.firstName}</p>
+								<p>Last Name: {this.state.lastName}</p>
+								<p>Address: {this.state.address}</p>
+								<p>City: {this.state.city}</p>
+								<p>State: {this.state.state}</p>
+								<p>Zip: {this.state.zip}</p>
+								<p>Telephone Number: {this.state.telephoneNumber}</p>
+								<p>Date of Pickup:{this.state.pickupDate}</p>
+								<p>Barrel Quantity: {this.props.location.state.shippingQuantity}</p>
+								<p>Destination:{this.props.location.state.countries.country}</p>
+								<p>
+									Total:{this.props.location.state.shippingQuantity *
+										this.props.location.state.selectedCountry}
+								</p>
+							</Modal>
 						) : null}
-					</div>
-				</Row>
+						<Row className="form-row">
+							<Col className="col" size="20">
+								<label htmlFor="firstName">First Name</label>
+								<input
+									type="text"
+									className="form-control"
+									id="firstName"
+									name="firstName"
+									value={this.state.firstName}
+									onChange={this.handleFormChange}
+									placeholder="First Name"
+								/>
+								<div>
+									{this.state.firstNameError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.firstNameError}</div>
+									) : null}
+								</div>
+							</Col>
+							<Col className="col" size="20">
+								<label htmlFor="lastName">Last Name</label>
+								<input
+									type="text"
+									className="form-control"
+									id="lastName"
+									name="lastName"
+									value={this.state.lastName}
+									onChange={this.handleFormChange}
+									placeholder="Last Name"
+								/>
+								<div>
+									{this.state.lastNameError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.lastNameError}</div>
+									) : null}
+								</div>
+							</Col>
+						</Row>
+						<Row className="form-row">
+							<label htmlFor="address">Address</label>
+							<input
+								type="text"
+								className="form-control"
+								id="address"
+								name="address"
+								value={this.state.address}
+								onChange={this.handleFormChange}
+								placeholder="Address"
+							/>
+							<div>
+								{this.state.addressError ? (
+									<div style={{ fontSize: 12, color: 'red' }}>{this.state.addressError}</div>
+								) : null}
+							</div>
+						</Row>
 
-				<Row className="form-row">
-					<Col className="col" size="20">
-						<label htmlFor="City">City</label>
-						<input
-							type="text"
-							className="form-control"
-							id="city"
-							name="city"
-							value={this.state.city}
-							onChange={this.handleFormChange}
-							placeholder="City"
-						/>
-						<div>
-							{this.state.cityError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.cityError}</div>
-							) : null}
-						</div>
-					</Col>
-					<Col className="col" size="2">
-						<label htmlFor="State">State</label>
-						<input
-							type="text"
-							className="form-control"
-							id="state"
-							name="state"
-							value={this.state.state}
-							onChange={this.handleFormChange}
-							maxLength="2"
-							placeholder="State"
-						/>
-						<div>
-							{this.state.stateError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.stateError}</div>
-							) : null}
-						</div>
-					</Col>
-					<Col className="col" size="10">
-						<label htmlFor="Zip">Zip</label>
-						<input
-							type="text"
-							className="form-control"
-							id="zip"
-							name="zip"
-							value={this.state.zip}
-							onChange={this.handleFormChange}
-							maxLength="5"
-							placeholder="Zip"
-						/>
-						<div>
-							{this.state.zipError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.zipError}</div>
-							) : null}
-						</div>
-					</Col>
-				</Row>
+						<Row className="form-row">
+							<Col className="col" size="20">
+								<label htmlFor="City">City</label>
+								<input
+									type="text"
+									className="form-control"
+									id="city"
+									name="city"
+									value={this.state.city}
+									onChange={this.handleFormChange}
+									placeholder="City"
+								/>
+								<div>
+									{this.state.cityError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.cityError}</div>
+									) : null}
+								</div>
+							</Col>
+							<Col className="col" size="2">
+								<label htmlFor="State">State</label>
+								<input
+									type="text"
+									className="form-control"
+									id="state"
+									name="state"
+									value={this.state.state}
+									onChange={this.handleFormChange}
+									maxLength="2"
+									placeholder="State"
+								/>
+								<div>
+									{this.state.stateError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.stateError}</div>
+									) : null}
+								</div>
+							</Col>
+							<Col className="col" size="10">
+								<label htmlFor="Zip">Zip</label>
+								<input
+									type="text"
+									className="form-control"
+									id="zip"
+									name="zip"
+									value={this.state.zip}
+									onChange={this.handleFormChange}
+									maxLength="5"
+									placeholder="Zip"
+								/>
+								<div>
+									{this.state.zipError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.zipError}</div>
+									) : null}
+								</div>
+							</Col>
+						</Row>
 
-				<Row className="form-row">
-					<Col className="col" size="10">
-						<label htmlFor="email">Email Address</label>
-						<input
-							type="text"
-							className="form-control"
-							id="email"
-							name="email"
-							value={this.state.email}
-							onChange={this.handleFormChange}
-							placeholder="Email Address"
-						/>
-						<div>
-							{this.state.emailError ? (
-								<div style={{ fontSize: 12, color: 'red' }}>{this.state.emailError}</div>
-							) : null}
-						</div>
-					</Col>
-					<Col className="col" size="10">
-						<label htmlFor="telNumber">Telephone Number</label>
-						<input
-							type="text"
-							className="form-control"
-							id="telNumber"
-							name="telephoneNumber"
-							value={this.state.telephoneNumber}
-							onChange={this.handleFormChange}
-							placeholder="Telephone Number"
-							maxLength="12"
-						/>
-					</Col>
-					<div>
-						{this.state.telNumberError ? (
-							<div style={{ fontSize: 12, color: 'red' }}>{this.state.telNumberError}</div>
-						) : null}
-					</div>
-				</Row>
+						<Row className="form-row">
+							<Col className="col" size="10">
+								<label htmlFor="email">Email Address</label>
+								<input
+									type="text"
+									className="form-control"
+									id="email"
+									name="email"
+									value={this.state.email}
+									onChange={this.handleFormChange}
+									placeholder="Email Address"
+								/>
+								<div>
+									{this.state.emailError ? (
+										<div style={{ fontSize: 12, color: 'red' }}>{this.state.emailError}</div>
+									) : null}
+								</div>
+							</Col>
+							<Col className="col" size="10">
+								<label htmlFor="telNumber">Telephone Number</label>
+								<input
+									type="text"
+									className="form-control"
+									id="telNumber"
+									name="telephoneNumber"
+									value={this.state.telephoneNumber}
+									onChange={this.handleFormChange}
+									placeholder="Telephone Number"
+									maxLength="12"
+								/>
+							</Col>
+							<div>
+								{this.state.telNumberError ? (
+									<div style={{ fontSize: 12, color: 'red' }}>{this.state.telNumberError}</div>
+								) : null}
+							</div>
+						</Row>
 
-				<button
-					type="submit"
-					className="btn btn-primary"
-					onClick={(e) => {
-						this.handleFormSubmit(e);
-					}}
-				>
-					Submit
-				</button>
-			</form>
+						<button
+							type="submit"
+							className="btn btn-primary"
+							onClick={(e) => {
+								this.handleFormSubmit(e);
+							}}
+						>
+							Submit
+						</button>
+					</form>
+				</div>
+			</div>
 		);
 	}
 }

@@ -9,6 +9,12 @@
 	opacity: 0.91;
 }
 
+#totalPrice {
+	color: red;
+	font-size: 24px;
+	font-weight: bold;
+}
+
 .box-body-ship {
 	margin-top: 3%;
 }
@@ -29,4 +35,9 @@
 #btn-2-ship {
 	float: right;
 	padding: 30px;
+	margin-right: 25%;
+}
+
+#btn-1-ship {
+	margin-left: 25%;
 }
