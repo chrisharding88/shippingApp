@@ -238,7 +238,7 @@ class Form extends Component {
 								</p>
 							</Modal>
 						) : null}
-						<Row className="form-row">
+						<Row className="form-row names">
 							<Col className="col" size="20">
 								<label htmlFor="firstName">First Name</label>
 								<input
@@ -274,7 +274,7 @@ class Form extends Component {
 								</div>
 							</Col>
 						</Row>
-						<Row className="form-row">
+						<Row className="form-row address">
 							<label htmlFor="address">Address</label>
 							<input
 								type="text"
@@ -292,7 +292,7 @@ class Form extends Component {
 							</div>
 						</Row>
 
-						<Row className="form-row">
+						<Row className="form-row cityStateZip">
 							<Col className="col" size="20">
 								<label htmlFor="City">City</label>
 								<input
@@ -348,7 +348,7 @@ class Form extends Component {
 							</Col>
 						</Row>
 
-						<Row className="form-row">
+						<Row className="form-row emailTelephone ">
 							<Col className="col" size="10">
 								<label htmlFor="email">Email Address</label>
 								<input
