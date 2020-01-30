@@ -10,6 +10,9 @@ const Password = () => {
 				<label>Password:</label>
 				<input type="password" className="form-control" name="password" />
 			</form>
+			<button className="btn btn-primary">Submit</button>
 		</div>
 	);
 };
+
+export default Password;

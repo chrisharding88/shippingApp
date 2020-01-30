@@ -12,8 +12,9 @@ class shippingPage extends Component {
 		this.state = {
 			shippingQuantity: '',
 			countries: [],
+			selectedCountryPrice: '',
 			selectedCountry: '',
-			pickupDate: ''
+			date: ''
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleShipSubmit = this.handleShipSubmit.bind(this);
@@ -21,15 +22,16 @@ class shippingPage extends Component {
 	componentDidMount() {
 		fetch('/api/country')
 			.then((response) => {
+				console.log(response);
 				return response.json();
 			})
 			.then((data) => {
 				console.log(data);
-				let countriesfromAPI = data.map((country) => {
-					return { value: country, display: country };
-				});
+				let countryArray = [];
+
+				data.forEach((element) => countryArray.push(element));
 				this.setState({
-					countries: data
+					countries: countryArray
 				});
 			})
 			.catch((error) => {
@@ -48,7 +50,7 @@ class shippingPage extends Component {
 		event.preventDefault();
 		this.setState({
 			shippingQuantity: '',
-			selectedCountry: '',
+			selectedCountryPrice: '',
 			pickupDate: '',
 			countries: []
 		});
@@ -57,9 +59,12 @@ class shippingPage extends Component {
 		this.props.history.push({
 			pathname: '/form',
 			state: {
+				date: this.state.date,
 				shippingQuantity: this.state.shippingQuantity,
 				selectedCountry: this.state.selectedCountry,
-				countries: this.state.countries.find((i) => i.country === this.state.countries)
+				selectedCountryPrice: this.state.countries.filter(
+					(x) => (x.country === this.state.selectedCountry ? x : null)
+				)[0].shippingPrice
 			}
 		});
 	};
@@ -71,7 +76,7 @@ class shippingPage extends Component {
 				<div className="box2">
 					<div className="box-body-ship">
 						<img src={Logo} alt="bescoLogo" className="bescoLogo" />
-						<Date value={this.state.pickupDate} />
+						<Date value={this.state.date} />
 						<div className="numberInput">
 							<label>How Many Barrels Are You Sending:</label>
 							<input
@@ -83,24 +88,27 @@ class shippingPage extends Component {
 								required
 							/>
 						</div>
-						<DropdownCountries
+						<select
+							name="selectedCountry"
 							value={this.state.selectedCountry}
-							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
+							onChange={(e) => {
+								this.handleInputChange(e);
+							}}
 						>
-							{this.state.countries.map((country) => (
-								<option value={country.shippingPrice} id={country.country}>
+							{this.state.countries.map((country, index) => (
+								<option pricevalue={country.shippingPrice} value={country.country} id={country.country}>
 									{country.country}
 								</option>
 							))}
-						</DropdownCountries>
+						</select>
 
 						<ShipPrice
-							value={this.state.selectedCountry}
-							onChange={(event) => this.setState({ selectedCountry: event.target.value })}
+							value={this.state.selectedCountryPrice}
+							onChange={(event) => this.setState({ selectedCountryPrice: event.target.value })}
 						>
-							<span value={this.state.selectedCountry}>{this.state.selectedCountry}</span>
+							<span value={this.state.selectedCountryPrice}>{this.state.selectedCountryPrice}</span>
 						</ShipPrice>
-						<div id="totalPrice"> Total: ${this.state.selectedCountry * this.state.shippingQuantity}</div>
+
 						<div className="ship-buttons">
 							<Submit
 								onClick={(e) => {

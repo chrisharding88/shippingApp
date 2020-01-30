@@ -4,7 +4,7 @@ export const DropdownCountries = (props) => {
 	return (
 		<div className="dropdownCountriesMenu" id="country">
 			<label for="dropdown-menu"> Country:</label>
-			<select onChange={(event) => props.onChange(event)}>{props.children}</select>
+			<select>{props.children}</select>
 		</div>
 	);
 };

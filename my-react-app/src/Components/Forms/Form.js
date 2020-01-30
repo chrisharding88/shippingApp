@@ -6,6 +6,7 @@ import Logo from '../../bescoLogo.jpg';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/modal';
 import Nav from '../Nav/nav';
+import API from '../../Utils/API';
 // import ConfirmPage from '../../Pages/ConfirmPage/confirmPage';
 
 class Form extends Component {
@@ -20,6 +21,8 @@ class Form extends Component {
 			state: '',
 			zip: '',
 			email: '',
+			destination: '',
+			shippingQuantity: '',
 			telephoneNumber: '',
 			firstNameError: '',
 			lastNameError: '',
@@ -68,6 +71,10 @@ class Form extends Component {
 	};
 
 	sendShipData = () => {
+		const total = math.multiply(
+			this.props.location.state.selectedCountryPrice,
+			this.props.location.state.shippingQuantity
+		);
 		const formData = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
@@ -75,22 +82,14 @@ class Form extends Component {
 			city: this.state.city,
 			state: this.state.state,
 			zip: this.state.zip,
-			email: this.state.email
+			email: this.state.email,
+			telephoneNumber: this.state.telephoneNumber,
+			country: this.props.location.state.selectedCountry,
+			shippingQuantity: this.props.location.state.shippingQuantity,
+			shippingPrice: total
 		};
 		console.log(formData);
-		return fetch('/api/shipping', {
-			method: 'POST',
-			headers: {
-				'content-type': 'application.json'
-			},
-			body: JSON.stringify(formData)
-		})
-			.then(function(response) {
-				return response.json();
-			})
-			.then(function(data) {
-				console.log('Created Gist:', data);
-			});
+		API.saveShipping(formData).then((res) => console.log(res)).catch((err) => console.log(err));
 	};
 
 	validate = () => {
@@ -231,10 +230,10 @@ class Form extends Component {
 								<p>Telephone Number: {this.state.telephoneNumber}</p>
 								<p>Date of Pickup:{this.state.pickupDate}</p>
 								<p>Barrel Quantity: {this.props.location.state.shippingQuantity}</p>
-								<p>Destination:{this.props.location.state.countries.country}</p>
+								<p>Destination:{this.props.location.state.selectedCountry}</p>
 								<p>
 									Total:{this.props.location.state.shippingQuantity *
-										this.props.location.state.selectedCountry}
+										this.props.location.state.selectedCountryPrice}
 								</p>
 							</Modal>
 						) : null}

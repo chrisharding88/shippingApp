@@ -10,7 +10,9 @@ class barrelPage extends Component {
 	state = {
 		barrelQuantity: '',
 		barrels: [],
-		selectedBarrel: ''
+		selectedBarrelPrice: '',
+		selectedBarrel: '',
+		date: ''
 	};
 
 	componentDidMount() {
@@ -19,11 +21,12 @@ class barrelPage extends Component {
 				return response.json();
 			})
 			.then((data) => {
-				let barrelsfromAPI = data.map((barrel) => {
-					return { value: barrel, display: barrel };
-				});
+				console.log(data);
+				let barrelArray = [];
+				data.forEach((element) => barrelArray.push(element));
+
 				this.setState({
-					barrels: data
+					barrels: barrelArray
 				});
 			})
 			.catch((error) => {
@@ -49,9 +52,12 @@ class barrelPage extends Component {
 		this.props.history.push('/form')({
 			pathname: '/form',
 			state: {
+				date: this.state.date,
 				barrelQuantity: this.state.barrelQuantity,
 				selectedBarrel: this.state.selectedBarrel,
-				barrels: this.state.barrels.find((i) => i.barrel === this.state.barrels)
+				selectedBarrelPrice: this.state.barrels.filter(
+					(x) => (x.barrelArray === this.state.selectedBarrel ? x : null)
+				)[0].barrelPrice
 			}
 		});
 	};
@@ -89,21 +95,21 @@ class barrelPage extends Component {
 								required
 							/>
 						</div>
-						<DropdownBarrels
+						<select
+							name="selectedBarrel"
 							value={this.state.selectedBarrel}
-							onChange={(event) => this.setState({ selectedBarrel: event.target.value })}
+							onChange={(event) => this.handleInputChange(event)}
 						>
 							{this.state.barrels.map((barrel) => (
-								<option value={barrel.barrelPrice}>{barrel.barrel}</option>
+								<option pricevalue={barrel.barrelPrice} value={barrel.barrel}>
+									{barrel.barrel}
+								</option>
 							))}
-						</DropdownBarrels>
+						</select>
 						<BarrelPrice
-							value={this.state.selectedBarrel}
-							onChange={(event) => this.setState({ selectedBarrel: event.target.value })}
-						>
-							<span value={this.state.selectedBarrel}>{this.state.selectedBarrel}</span>
-						</BarrelPrice>
-						<div> Total: ${this.state.selectedBarrel * this.state.barrelQuantity}</div>
+							value={this.state.selectedBarrelPrice}
+							onChange={(event) => this.setState({ selectedBarrelPrice: event.target.value })}
+						/>
 						<Submit onClick={(e) => this.handleBuySubmit(e)} />
 						<Link role="button" className="btn btn-danger" to="/">
 							Back

@@ -1,0 +1,10 @@
+.box5 {
+	border: 2px solid black;
+	height: 475px;
+	width: 800px;
+	background-color: white;
+	font-family: 'Noto Serif JP', serif;
+	margin-top: 10%;
+	margin-left: 30%;
+	opacity: 0.91;
+}

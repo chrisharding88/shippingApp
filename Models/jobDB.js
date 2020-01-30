@@ -14,12 +14,12 @@ var jobSchema = new Schema({
 	state: { type: String, required: true },
 	zip: { type: Number, required: true },
 	telephoneNumber: { type: Number, required: true },
-	shippingQuantity: { type: Number, required: true },
-	barrelQuantity: { type: Number, required: true },
-	barrelType: { type: Array, required: true },
-	country: { type: Array, required: true },
-	shippingPrice: { type: Array, required: true },
-	barrelPrice: { type: Array, required: true }
+	shippingQuantity: { type: Number, required: false },
+	barrelQuantity: { type: Number, required: false },
+	barrelType: { type: String, required: false },
+	country: { type: String, required: true },
+	shippingPrice: { type: String, required: false },
+	barrelPrice: { type: String, required: false }
 });
 
 var JobList = mongoose.model('Jobs', jobSchema);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Dialog, Body, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 class MyModal extends Component {
 	render() {
 		return (
@@ -14,9 +15,11 @@ class MyModal extends Component {
 					<Button onClick={() => this.props.toggleModal()} variant="secondary">
 						Close
 					</Button>
-					<Button onClick={() => this.props.sendShipData()} variant="primary">
-						Send
-					</Button>
+					<Link to="/thankyou">
+						<Button onClick={() => this.props.sendShipData()} variant="primary">
+							Send
+						</Button>
+					</Link>
 				</Modal.Footer>
 			</Modal.Dialog>
 		);

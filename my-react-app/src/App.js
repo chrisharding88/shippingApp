@@ -5,6 +5,7 @@ import Form from '../src/Components/Forms/Form';
 import ShippingPage from '../src/Pages/ShippingPage/shippingPage';
 import BarrelPage from '../src/Pages/BarrelPage/barrelPage';
 import UpcomingJobsPage from '../src/Pages/UpcomingJobsPage/upcomingJobs';
+import ThankYouPage from '../src/Pages/ThankYouPage/thankYou';
 
 import logo from './logo.svg';
 import './App.css';
@@ -22,6 +23,7 @@ class App extends Component {
 						<Route exact path="/form" component={Form} />
 						<Route exact path="/barrelpage" component={BarrelPage} />
 						<Route exact path="/upcomingjobs" component={UpcomingJobsPage} />
+						<Route exact path="/thankyou" component={ThankYouPage} />
 					</Switch>
 				</Router>
 			</div>

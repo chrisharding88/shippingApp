@@ -1,6 +1,7 @@
 const express = require('express');
 const barreljson = require('./barrelPrices');
 const shippingjson = require('./shippingBarrelPrices');
+const barrelData = require('./Models/jobDB');
 const shippingData = require('./Models/jobDB');
 const mongoose = require('mongoose');
 // const routes = require('./routes');
@@ -41,11 +42,26 @@ app.get('/api/country', function(req, res) {
 app.get('/api/barrel', function(req, res) {
 	res.json(barreljson);
 });
+
 app.post('/api/shipping', function(req, res) {
 	console.log(req.body);
 	shippingData.create(req.body).then((data) => {
 		res.json(data);
 	});
+});
+
+app.post('/api/barrel', function(req, res) {
+	console.log(req.body);
+	barrelData.create(req.body).then((data) => {
+		res.json(data);
+	});
+});
+app.get('/api/shipping', function(req, res) {
+	shippingData
+		.find(req.query)
+		.sort({ date: -1 })
+		.then((dbModel) => res.json(dbModel))
+		.catch((err) => res.status(422).json(err));
 });
 
 app.get('api/shipping/:id', function(req, res) {
