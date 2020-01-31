@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const barreljson = require('./barrelPrices');
 const shippingjson = require('./shippingBarrelPrices');
