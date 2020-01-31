@@ -71,10 +71,6 @@ class Form extends Component {
 	};
 
 	sendShipData = () => {
-		const total = math.multiply(
-			this.props.location.state.selectedCountryPrice,
-			this.props.location.state.shippingQuantity
-		);
 		const formData = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
@@ -86,7 +82,7 @@ class Form extends Component {
 			telephoneNumber: this.state.telephoneNumber,
 			country: this.props.location.state.selectedCountry,
 			shippingQuantity: this.props.location.state.shippingQuantity,
-			shippingPrice: total
+			shippingPrice: this.props.location.state.selectedCountryPrice * this.props.location.state.shippingQuantity
 		};
 		console.log(formData);
 		API.saveShipping(formData).then((res) => console.log(res)).catch((err) => console.log(err));
@@ -232,7 +228,7 @@ class Form extends Component {
 								<p>Barrel Quantity: {this.props.location.state.shippingQuantity}</p>
 								<p>Destination:{this.props.location.state.selectedCountry}</p>
 								<p>
-									Total:{this.props.location.state.shippingQuantity *
+									Total:${this.props.location.state.shippingQuantity *
 										this.props.location.state.selectedCountryPrice}
 								</p>
 							</Modal>
