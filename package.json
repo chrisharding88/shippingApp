@@ -22,8 +22,8 @@
 		"start:prod": "node server.js",
 		"start:dev": "concurrently \"nodemon --ignore 'my-react-app/*'\" \"npm run my-react-app\"",
 		"my-react-app": "cd my-react-app && npm run start",
+		"build": "cd my-react-app && npm run build",
 		"heroku-postbuild": "npm run build"
-
 	},
 	"repository": {
 		"type": "git",
