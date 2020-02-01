@@ -21,9 +21,8 @@
 		"start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
 		"start:prod": "node server.js",
 		"start:dev": "concurrently \"nodemon --ignore 'my-react-app/*'\" \"npm run my-react-app\"",
-		"install": "cd my-react-app && npm install",
-		"build": "cd my-react-app && npm run build",
 		"my-react-app": "cd my-react-app && npm run start",
+		"build": "cd my-react-app && npm run build",
 		"heroku-postbuild": "npm run build"
 	},
 	"repository": {
